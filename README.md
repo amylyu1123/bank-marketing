@@ -2,13 +2,15 @@ This is the group project from the U of T course *CSC343 - Introduction to Datab
 
 ## Introduction
 
-This project contains 4 phases, focusing on exploring multiple investigative questions using a real, open dataset of customers information from a Portuguese banking institution as follows:
+This project focuses on exploring multiple investigative questions using a real, open dataset of customers information from a Portuguese banking institution as follows:
 
-designed a relational schema capable of representing the dataset using common-sense principles
-implemented a relational schema using the SQL Data Definition Language
-cleaned this dataset using Pandas to prepare it for importing into a PostgreSQL database
-Used the SQL Data Definition Language to explore the dataset and answer questions about it
-Presented technical material to a technical audience
+- designed a relational schema capable of representing the dataset using common-sense principles
+- implemented a relational schema using the SQL Data Definition Language
+- cleaned this dataset using Pandas to prepare it for importing into a PostgreSQL database
+- Used the SQL Data Definition Language to explore the dataset and answer questions about it
+- Presented technical material to a technical audience
+
+We have the following 4 phases:
 
 #### Phase 1
 The domain of interest (Bank Marketing Campaign) was identified and the corresponding dataset was chosen. Designed and documented the relational schema, and came up with three investigative questions.
