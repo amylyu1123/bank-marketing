@@ -10,19 +10,17 @@ This project focuses on exploring multiple investigative questions using a real,
 - Used the SQL Data Definition Language to explore the dataset and answer questions about it
 - Presented technical material to a technical audience
 
-## Overview of phases
-We have the 4 phases:
-
-#### Phase 1
+## Phase Overview
+### Phase 1
 The domain of interest (Bank Marketing Campaign) was identified and the corresponding dataset was chosen. Designed and documented the relational schema, and came up with three investigative questions.
 
-#### Phase 2
+### Phase 2
 Implemented the schema in detail, recorded with design decisions. Cleaned up the dataset and imported it into a PostgreSQL database. 
 
-#### Phase 3
+### Phase 3
 Wrote SQL queries to explore the investigative questions, and made connections across tables to come up with follow-up questions. Discussed and reported what was learned about the domain, results and conclusions.
 
-#### Phase 4
+### Phase 4
 Presented the results, things that are interesting, challenges and lessons for the whole project.
 
 ## Discussion
