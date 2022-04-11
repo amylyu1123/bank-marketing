@@ -1,0 +1,26 @@
+
+-- Importing a file such as this will let you quickly create a demo to hand
+-- in. You may edit this to customize it.  For instance, you may have your
+-- data in a csv file and need a different command to load it in, you
+-- may differently named files, or you may have your queries split into more
+-- files than expected here.
+--
+\echo -------------------- Loading schema and data: -------------------- 
+\echo
+\i schema.ddl
+\COPY Outcome from outcome.csv DELIMITER ',' CSV HEADER
+\COPY MaritalCredit from MaritalCredit.csv DELIMITER ',' CSV HEADER
+\COPY Person from person.csv DELIMITER ',' CSV HEADER
+\COPY Index from index.csv DELIMITER ',' CSV HEADER
+
+\echo  -------------------- Investigative Question 1: ------------------ 
+\echo
+\i queries_q1.sql
+\echo
+\echo  -------------------- Investigative Question 2: ------------------ 
+\echo
+\i queries_q2.sql
+\echo
+\echo  -------------------- Investigative Question 3: ------------------
+\echo
+\i queries_q3.sql

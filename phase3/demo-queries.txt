@@ -1,0 +1,244 @@
+-------------------- Loading schema and data: --------------------
+
+psql:schema.ddl:1: NOTICE:  drop cascades to 7 other objects
+DETAIL:  drop cascades to type bank.maritaltype
+drop cascades to type bank.yesno
+drop cascades to type bank.outcometype
+drop cascades to table bank.maritalcredit
+drop cascades to table bank.outcome
+drop cascades to table bank.person
+drop cascades to table bank.index
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE DOMAIN
+CREATE DOMAIN
+CREATE DOMAIN
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+COPY 5625
+COPY 41186
+COPY 5625
+COPY 5625
+-------------------- Investigative Question 1: ------------------
+
+query #1
+this query produce proportion of successful campaign in different range of age, column SuccessProportion is proportion of successful previous campaign, column totalSuccess is total number of successful previos campaign, totalOutcome is total number of observation
+     agerange     | successproportion | totalsuccess | totaloutcome 
+------------------+-------------------+--------------+--------------
+ 17-31            |                29 |          419 |         1441
+ 32-46            |                18 |          483 |         2639
+ 47-61            |                26 |          307 |         1179
+ 62-76            |                41 |          114 |          273
+ equal or over 77 |                53 |           50 |           93
+(5 rows)
+
+query #2
+this query produce proportion of successful campaign with different job, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+CREATE VIEW
+ havejobornot | successproportion | totalsuccess | totaloutcome 
+--------------+-------------------+--------------+--------------
+ HaveJob      |                21 |          978 |         4651
+ HaveNoJob    |                40 |          395 |          974
+(2 rows)
+
+query #3
+this query produce proportion of successful campaign in different marital group, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ marital  | successproportion | totalsuccess | totaloutcome 
+----------+-------------------+--------------+--------------
+ divorced |                20 |          129 |          631
+ married  |                23 |          723 |         3107
+ single   |                27 |          516 |         1869
+(3 rows)
+
+query #4
+this query produce proportion of successful campaign in different education, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+CREATE VIEW
+         educationlevel          | successproportion | totalsuccess | totaloutcome 
+---------------------------------+-------------------+--------------+--------------
+ Higher than High School         |                29 |          716 |         2461
+ Lower than or eq to High School |                39 |          270 |          692
+(2 rows)
+
+query #5
+this query produce proportion of successful campaign in different default on credit, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ credit | successproportion | totalsuccess | totaloutcome 
+--------+-------------------+--------------+--------------
+ yes    |                 0 |            0 |            1
+ no     |                26 |         1314 |         5049
+(2 rows)
+
+query #6
+this query produce proportion of successful campaign in different house loan, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ housing | successproportion | totalsuccess | totaloutcome 
+---------+-------------------+--------------+--------------
+ no      |                24 |          579 |         2366
+ yes     |                24 |          766 |         3120
+(2 rows)
+
+query #7
+this query produce proportion of successful campaign in different personal loan, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ loan | successproportion | totalsuccess | totaloutcome 
+------+-------------------+--------------+--------------
+ yes  |                24 |          207 |          852
+ no   |                24 |         1138 |         4634
+(2 rows)
+
+query #8
+this query produce proportion of successful campaign in different previous number of contact, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+     pcontact     | successproportion | totalsuccess | totaloutcome 
+------------------+-------------------+--------------+--------------
+ one contact      |                18 |          865 |         4561
+ multiple contact |                47 |          508 |         1064
+(2 rows)
+
+query #9
+this query produce proportion of successful campaign in different employment variation rate, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ empvarrate | successproportion | totalsuccess | totaloutcome 
+------------+-------------------+--------------+--------------
+       -3.4 |                44 |          211 |          477
+         -3 |                54 |           45 |           83
+       -2.9 |                38 |          213 |          555
+       -1.8 |                14 |          422 |         2946
+       -1.7 |                54 |          244 |          447
+       -1.1 |                53 |          203 |          383
+       -0.2 |                 0 |            0 |            1
+       -0.1 |                 4 |           35 |          733
+(8 rows)
+
+query #10
+this query produce proportion of successful campaign in different consumer price index, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ cpirange  | successproportion | totalsuccess | totaloutcome 
+-----------+-------------------+--------------+--------------
+ 92.0-93.0 |                20 |          626 |         3011
+ 93.0-94.0 |                16 |          300 |         1784
+ 94.0-95.0 |                53 |          447 |          830
+(3 rows)
+
+query #11
+this query produce proportion of successful campaign in different comsumer confidence index, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+  ccirange  | successproportion | totalsuccess | totaloutcome 
+------------+-------------------+--------------+--------------
+ -33 to -24 |                44 |          389 |          882
+ -42 to -33 |                33 |          655 |         1975
+ -51 to -42 |                11 |          329 |         2768
+(3 rows)
+
+query #12
+this query produce proportion of successful campaign in different Euribor 3 month rate, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ euriborrange | successproportion | totalsuccess | totaloutcome 
+--------------+-------------------+--------------+--------------
+ 0.0-1.0      |                48 |          962 |         1967
+ 1.0-2.0      |                12 |          376 |         2924
+ 3.0-4.0      |                 0 |            0 |            1
+ 4.0-5.0      |                 4 |           35 |          733
+(4 rows)
+
+query #13
+this query produce proportion of successful campaign with Existence of subscription of a term deposit, column SuccessProportion, totalSuccess and totalOutcome have same meaning as query #1
+ subscribed | successproportion | totalsuccess | totaloutcome 
+------------+-------------------+--------------+--------------
+ no         |                11 |          479 |         4126
+ yes        |                59 |          894 |         1499
+(2 rows)
+
+
+-------------------- Investigative Question 2: ------------------
+
+#1
+personal information of people that have highest proportion of successful poutcome, column SuccessProportion is proportion of successful previous campaign, column totalSuccess is total number of successful previos campaign, totalOutcome is total number of observation
+     agerange     |         educationlevel          | havejobornot |     pcontact     | successproportion | totalsuccess | totaloutcome 
+------------------+---------------------------------+--------------+------------------+-------------------+--------------+--------------
+ 32-46            | Lower than or eq to High School | HaveNoJob    | one contact      |                18 |           15 |           79
+ 32-46            | Higher than High School         | HaveJob      | one contact      |                18 |          172 |          931
+ 47-61            | Higher than High School         | HaveJob      | one contact      |                21 |           80 |          370
+ 17-31            | Higher than High School         | HaveJob      | one contact      |                26 |          120 |          452
+ 32-46            | Higher than High School         | HaveNoJob    | one contact      |                27 |           12 |           43
+ 47-61            | Lower than or eq to High School | HaveNoJob    | one contact      |                28 |           29 |          101
+ 62-76            | Higher than High School         | HaveNoJob    | one contact      |                29 |           13 |           44
+ 17-31            | Higher than High School         | HaveNoJob    | one contact      |                31 |           11 |           35
+ 47-61            | Lower than or eq to High School | HaveNoJob    | multiple contact |                33 |           10 |           30
+ 62-76            | Higher than High School         | HaveJob      | multiple contact |                33 |            1 |            3
+ 62-76            | Lower than or eq to High School | HaveNoJob    | one contact      |                34 |           35 |          101
+ 17-31            | Lower than or eq to High School | HaveNoJob    | one contact      |                36 |           56 |          153
+ 47-61            | Higher than High School         | HaveNoJob    | one contact      |                41 |           25 |           60
+ equal or over 77 | Higher than High School         | HaveNoJob    | one contact      |                42 |            3 |            7
+ 32-46            | Higher than High School         | HaveJob      | multiple contact |                45 |           91 |          198
+ equal or over 77 | Lower than or eq to High School | HaveNoJob    | one contact      |                45 |           18 |           40
+ 62-76            | Higher than High School         | HaveJob      | one contact      |                53 |            8 |           15
+ 17-31            | Higher than High School         | HaveJob      | multiple contact |                54 |           65 |          119
+ 17-31            | Lower than or eq to High School | HaveNoJob    | multiple contact |                54 |           52 |           95
+ 62-76            | Lower than or eq to High School | HaveNoJob    | multiple contact |                54 |           25 |           46
+ 47-61            | Higher than High School         | HaveNoJob    | multiple contact |                58 |           10 |           17
+ 47-61            | Higher than High School         | HaveJob      | multiple contact |                59 |           54 |           91
+ 62-76            | Higher than High School         | HaveNoJob    | multiple contact |                59 |           16 |           27
+ 32-46            | Lower than or eq to High School | HaveNoJob    | multiple contact |                63 |            7 |           11
+ equal or over 77 | Lower than or eq to High School | HaveNoJob    | multiple contact |                63 |           23 |           36
+ 17-31            | Higher than High School         | HaveNoJob    | multiple contact |                67 |           21 |           31
+ equal or over 77 | Higher than High School         | HaveNoJob    | multiple contact |                71 |            5 |            7
+ 32-46            | Higher than High School         | HaveNoJob    | multiple contact |                81 |            9 |           11
+(28 rows)
+
+#2
+social and economic attributes of people that have highest proportion of successful poutcome, column SuccessProportion is proportion of successful previous campaign, column totalSuccess is total number of successful previos campaign, totalOutcome is total number of observation
+ cpirange  |  ccirange  | subscribed | successproportion | totalsuccess | totaloutcome 
+-----------+------------+------------+-------------------+--------------+--------------
+ 93.0-94.0 | -51 to -42 | no         |                 5 |           30 |          573
+ 92.0-93.0 | -51 to -42 | no         |                 6 |          104 |         1727
+ 93.0-94.0 | -42 to -33 | no         |                 8 |           74 |          866
+ 92.0-93.0 | -42 to -33 | no         |                21 |           30 |          141
+ 92.0-93.0 | -33 to -24 | no         |                29 |          134 |          459
+ 94.0-95.0 | -42 to -33 | no         |                29 |           75 |          252
+ 94.0-95.0 | -51 to -42 | no         |                29 |           32 |          108
+ 92.0-93.0 | -51 to -42 | yes        |                31 |           53 |          169
+ 93.0-94.0 | -51 to -42 | yes        |                36 |           34 |           93
+ 92.0-93.0 | -42 to -33 | yes        |                54 |           50 |           92
+ 92.0-93.0 | -33 to -24 | yes        |                60 |          255 |          423
+ 93.0-94.0 | -42 to -33 | yes        |                64 |          162 |          252
+ 94.0-95.0 | -42 to -33 | yes        |                70 |          264 |          372
+ 94.0-95.0 | -51 to -42 | yes        |                77 |           76 |           98
+(14 rows)
+
+
+-------------------- Investigative Question 3: ------------------
+
+#1
+proportion of having default on credit in different marital groups, column CreditProportion is proportion of have default on credit, HaveCredit is total number of default on credit, totalCredit is total number of observation
+ marital  |   creditproportion   | havecredit | totalcredit 
+----------+----------------------+------------+-------------
+ single   |                    0 |          0 |       10083
+ divorced |                    0 |          0 |        3781
+ married  | 0.000160788937721085 |          3 |       18658
+(3 rows)
+
+#2
+proportion of having default on credit in different education groups, column CreditProportion is proportion of have default on credit, HaveCredit is total number of default on credit, totalCredit is total number of observation
+      education      |   creditproportion   | havecredit | totalcredit 
+---------------------+----------------------+------------+-------------
+ university.degree   |                    0 |          0 |       10718
+ basic.4y            |                    0 |          0 |        2477
+ illiterate          |                    0 |          0 |          11
+ basic.6y            |                    0 |          0 |        1441
+ basic.9y            |                    0 |          0 |        4418
+ high.school         | 0.000126502213788741 |          1 |        7905
+ professional.course | 0.000450653447498873 |          2 |        4438
+(7 rows)
+
+#3
+proportion of having default on credit in different job groups, column CreditProportion is proportion of have default on credit, HaveCredit is total number of default on credit, totalCredit is total number of observation
+      job      |   creditproportion   | havecredit | totalcredit 
+---------------+----------------------+------------+-------------
+ management    |                    0 |          0 |        2466
+ admin.        |                    0 |          0 |        9129
+ entrepreneur  |                    0 |          0 |        1155
+ services      |                    0 |          0 |        3053
+ housemaid     |                    0 |          0 |         741
+ blue-collar   |                    0 |          0 |        6088
+ self-employed |                    0 |          0 |        1139
+ retired       |                    0 |          0 |        1327
+ student       |                    0 |          0 |         771
+ technician    | 0.000346800762961679 |          2 |        5767
+ unemployed    |  0.00128700128700129 |          1 |         777
+(11 rows)

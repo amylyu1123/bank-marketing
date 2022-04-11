@@ -1,0 +1,183 @@
+dbsrv1:~/project$ psql csc343h-lyuqing
+psql (10.19 (Ubuntu 10.19-0ubuntu0.18.04.1), server 10.18 (Ubuntu 10.18-0ubuntu0.18.04.1))
+Type "help" for help.
+
+--(a)
+--load the schema
+csc343h-lyuqing=> \i schema.ddl
+psql:schema.ddl:1: NOTICE:  drop cascades to 7 other objects
+DETAIL:  drop cascades to type maritaltype
+drop cascades to type yesno
+drop cascades to type outcometype
+drop cascades to table maritalcredit
+drop cascades to table outcome
+drop cascades to table person
+drop cascades to table index
+DROP SCHEMA
+CREATE SCHEMA
+SET
+CREATE DOMAIN
+CREATE DOMAIN
+CREATE DOMAIN
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+
+--load the data from each cleaned csv to each table
+csc343h-lyuqing=> \COPY Outcome from outcome.csv DELIMITER ',' CSV HEADER
+COPY 5625
+
+csc343h-lyuqing=> \COPY MaritalCredit from MaritalCredit.csv DELIMITER ',' CSV HEADER
+COPY 41186
+
+csc343h-lyuqing=> \COPY Person from person.csv DELIMITER ',' CSV HEADER
+COPY 5625
+
+csc343h-lyuqing=> \COPY Index from index.csv DELIMITER ',' CSV HEADER
+COPY 5625
+
+--(b) run \d for each table
+csc343h-lyuqing=> \d Outcome
+                  Table "bank.outcome"
+  Column  |    Type     | Collation | Nullable | Default
+----------+-------------+-----------+----------+---------
+ id       | integer     |           | not null |
+ poutcome | outcometype |           | not null |
+Indexes:
+    "outcome_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "index" CONSTRAINT "index_id_fkey" FOREIGN KEY (id) REFERENCES outcome(id)
+    TABLE "person" CONSTRAINT "person_id_fkey" FOREIGN KEY (id) REFERENCES outcome(id)
+
+csc343h-lyuqing=> \d MaritalCredit
+                Table "bank.maritalcredit"
+  Column   |    Type     | Collation | Nullable | Default
+-----------+-------------+-----------+----------+---------
+ id        | integer     |           | not null |
+ marital   | maritaltype |           |          |
+ education | text        |           |          |
+ job       | text        |           |          |
+ credit    | yesno       |           |          |
+Indexes:
+    "maritalcredit_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "person" CONSTRAINT "person_id_fkey1" FOREIGN KEY (id) REFERENCES maritalcredit(id)
+
+csc343h-lyuqing=> \d Person
+                   Table "bank.person"
+  Column   |    Type     | Collation | Nullable | Default
+-----------+-------------+-----------+----------+---------
+ id        | integer     |           | not null |
+ age       | integer     |           |          |
+ job       | text        |           |          |
+ marital   | maritaltype |           |          |
+ education | text        |           |          |
+ credit    | yesno       |           |          |
+ housing   | yesno       |           |          |
+ loan      | yesno       |           |          |
+ pcontact  | integer     |           |          |
+Indexes:
+    "person_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "person_id_fkey" FOREIGN KEY (id) REFERENCES outcome(id)
+    "person_id_fkey1" FOREIGN KEY (id) REFERENCES maritalcredit(id)
+
+csc343h-lyuqing=> \d Index
+                       Table "bank.index"
+   Column   |       Type       | Collation | Nullable | Default
+------------+------------------+-----------+----------+---------
+ id         | integer          |           | not null |
+ empvarrate | double precision |           |          |
+ cpi        | double precision |           |          |
+ cci        | double precision |           |          |
+ euribor3m  | double precision |           |          |
+ subscribed | yesno            |           |          |
+Indexes:
+    "index_pkey" PRIMARY KEY, btree (id)
+Foreign-key constraints:
+    "index_id_fkey" FOREIGN KEY (id) REFERENCES outcome(id)
+
+--(c) show the number of rows in each table
+csc343h-lyuqing=> SELECT count(*) from Outcome;
+ count
+-------
+  5625
+(1 row)
+
+csc343h-lyuqing=> SELECT count(*) from MaritalCredit;
+ count
+-------
+ 41186
+(1 row)
+
+csc343h-lyuqing=> SELECT count(*) from Person;
+ count
+-------
+  5625
+(1 row)
+
+csc343h-lyuqing=> SELECT count(*) from Index;
+ count
+-------
+  5625
+(1 row)
+
+--(d) show a sample of content for each table
+csc343h-lyuqing=> SELECT * FROM Outcome where id > 24000 and id < 24200;
+  id   | poutcome
+-------+----------
+ 24013 | failure
+ 24019 | failure
+ 24076 | failure
+ 24102 | failure
+ 24108 | success
+ 24113 | failure
+ 24124 | failure
+ 24135 | failure
+ 24139 | failure
+ 24140 | failure
+ 24143 | failure
+ 24146 | failure
+ 24157 | failure
+ 24161 | failure
+ 24166 | failure
+ 24168 | failure
+ 24173 | failure
+ 24188 | failure
+ 24190 | failure
+ 24196 | failure
+ 24198 | failure
+(21 rows)
+
+csc343h-lyuqing=> SELECT * FROM MaritalCredit where credit = 'yes';
+  id   | marital |      education      |    job     | credit
+-------+---------+---------------------+------------+--------
+ 21580 | married | professional.course | technician | yes
+ 21581 | married | professional.course | technician | yes
+ 24866 | married | high.school         | unemployed | yes
+(3 rows)
+
+csc343h-lyuqing=> SELECT * FROM Person where age > 50 and pcontact > 4;
+  id   | age |    job     | marital  |      education      | credit | housing | loan | pcontact
+-------+-----+------------+----------+---------------------+--------+---------+------+----------
+ 39605 |  52 | admin.     | married  | university.degree   | no     | yes     | yes  |        5
+ 39666 |  60 | management | married  |                     | no     | yes     | no   |        5
+ 40421 |  77 | management | married  |                     | no     | yes     | no   |        6
+ 40709 |  57 | admin.     | divorced | high.school         | no     | no      | no   |        5
+ 41081 |  51 | admin.     | divorced | high.school         | no     | yes     | no   |        7
+ 41126 |  61 | admin.     | married  | high.school         | no     | yes     | no   |        5
+ 41153 |  67 | housemaid  | divorced | professional.course | no     | yes     | no   |        5
+ 41174 |  62 | retired    | married  | university.degree   | no     | yes     | no   |        6
+(8 rows)
+
+csc343h-lyuqing=> SELECT * FROM Index where empvarrate = -0.1 and euribor3m > 4.191;
+  id   | empvarrate |  cpi   |  cci  | euribor3m | subscribed
+-------+------------+--------+-------+-----------+------------
+ 24013 |       -0.1 | 93.798 | -40.4 |     4.968 | no
+ 24019 |       -0.1 | 93.798 | -40.4 |     4.968 | yes
+ 24076 |       -0.1 |   93.2 |   -42 |     4.663 | no
+ 24102 |       -0.1 |   93.2 |   -42 |     4.286 | yes
+ 24108 |       -0.1 |   93.2 |   -42 |     4.286 | no
+ 24113 |       -0.1 |   93.2 |   -42 |     4.245 | no
+(6 rows)
